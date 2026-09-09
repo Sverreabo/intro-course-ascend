@@ -5,6 +5,24 @@ This module provides basic arithmetic operations.
 
 from utils import validate_numbers, format_result
 
+def multiply(a, b):
+    """
+    Multiply two numbers together.
+    
+    Args:
+        a (float): First number
+        b (float): Second number
+        
+    Returns:
+        float: Product of a and b
+        
+    Raises:
+        TypeError: If inputs are not numbers
+    """
+    validate_numbers(a, b)
+    result = a * b
+    return format_result(result)
+
 
 def add(a, b):
     """
@@ -54,17 +72,17 @@ def main():
     Simple interactive calculator for testing.
     """
     print("Simple Calculator")
-    print("Available operations: add, subtract")
+    print("Available operations: add, subtract, mult")
     print("Type 'quit' to exit")
     
     while True:
-        operation = input("\nEnter operation (add/subtract/quit): ").lower().strip()
+        operation = input("\nEnter operation (add/subtract/mult/quit): ").lower().strip()
         
         if operation == 'quit':
             print("Goodbye!")
             break
             
-        if operation not in ['add', 'subtract']:
+        if operation not in ['add', 'subtract', 'mult']:
             print("Invalid operation. Please use 'add' or 'subtract'")
             continue
             
@@ -78,6 +96,9 @@ def main():
             elif operation == 'subtract':
                 result = subtract(a, b)
                 print(f"Result: {a} - {b} = {result}")
+            elif operation == 'mult':
+                result = multiply(a,b)
+                print(f"Result: {a} * {b} = {result}")
                 
         except ValueError:
             print("Please enter valid numbers")
